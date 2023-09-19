@@ -1,0 +1,68 @@
+$infant-color: #fff176;
+$infant-wheelachair-color: #d4e157;
+$wheelachair-color: #64ffda;
+$normal-color: rgb(208, 242, 255);
+$spacial-meals: #81c784;
+$availableSeats-color: rgb(215, 208, 208);
+
+.referenceLists {
+  padding: 10px 0;
+  .css-m69qwo-MuiStack-root {
+    align-items: center;
+  }
+  .MuiTypography-subtitle2 {
+    margin-left: 5px;
+  }
+  .infant-wheelachair {
+    background-color: $infant-wheelachair-color;
+  }
+  .infant {
+    background-color: $infant-color;
+  }
+  .wheelachair {
+    background-color: $wheelachair-color;
+  }
+  .special-meals {
+    background-color: $spacial-meals;
+  }
+  .normal {
+    background-color: $normal-color;
+  }
+  .availableSeats {
+    background-color: $availableSeats-color;
+  }
+}
+
+.seat-details {
+  margin-top: 10px;
+  .normal {
+    background-color: $normal-color;
+  }
+
+  .availableSeats {
+    background-color: $availableSeats-color;
+  }
+
+  .infants {
+    background-color: $infant-color;
+  }
+  .wheelchair {
+    background-color: $wheelachair-color;
+    &.infants {
+      background-color: $infant-wheelachair-color;
+    }
+  }
+  .special-meals {
+    background-color: $spacial-meals;
+  }
+}
+
+.airlineSeat {
+  pointer-events: none;
+}
+
+.seatButton {
+  background-color: transparent !important;
+  padding: 0;
+  min-width: auto;
+}

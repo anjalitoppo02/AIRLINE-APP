@@ -1,24 +1,128 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from "react";
+import "./css/Style.scss";
+import { CssBaseline, Container } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/common/Header";
+import SignIn from "./components/Login";
+import CircularProgress from "@mui/material/CircularProgress";
+import { ProtectedRoute } from "./ProtectedRoute";
+import PageNotFound from "./components/PageNotFound";
+
+const FlightList = lazy(() => import("./components/FlightList"));
+const DashboardPage = lazy(() => import("./components/Dashboard"));
+const FlightCheckInPage = lazy(() => import("./components/CheckInFlight"));
+const InFlightPage = lazy(() => import("./components/InFlight"));
+const ManagePassengerPage = lazy(() => import("./components/ManagePassenger"));
+
+// const AncillaryServicePage = lazy(() =>
+//   import("./components/passenger/AncillaryServicePage")
+// );
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Header />
+      <Container maxWidth="md" sx={{ padding: "15px" }}>
+        <Routes>
+          <Route path="signin" element={<SignIn />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <FlightList />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="flights"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <FlightList />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="flights/:flightId/dashboard"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="flights/:flightId/checkin"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <FlightCheckInPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="flights/:flightId/inflight"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <InFlightPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="flights/:flightId/passenger"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <ManagePassengerPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+
+          <Route path="*" element={<PageNotFound />} />
+          {/* 
+          <Route
+            path="/passenger"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <ManagePassengerPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          
+          <Route
+            path="/inflight"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <InFlightPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/ancillary"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <AncillaryServicePage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          /> */}
+        </Routes>
+      </Container>
+    </React.Fragment>
   );
 }
 

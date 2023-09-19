@@ -1,0 +1,11 @@
+.flight-list {
+  .MuiListSubheader-root {
+    font-weight: 800;
+  }
+  ul li {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0 0 0 / 30%);
+    margin-bottom: 15px;
+  }
+}
