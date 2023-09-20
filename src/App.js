@@ -13,17 +13,14 @@ const DashboardPage = lazy(() => import("./components/Dashboard"));
 const FlightCheckInPage = lazy(() => import("./components/CheckInFlight"));
 const InFlightPage = lazy(() => import("./components/InFlight"));
 const ManagePassengerPage = lazy(() => import("./components/ManagePassenger"));
-
-// const AncillaryServicePage = lazy(() =>
-//   import("./components/passenger/AncillaryServicePage")
-// );
+const FlightServicePage = lazy(() => import("./components/FlightServices"));
 
 function App() {
   return (
     <React.Fragment>
       <CssBaseline />
       <Header />
-      <Container maxWidth="md" sx={{ padding: "15px" }}>
+      <Container maxWidth="lg" sx={{ padding: "15px" }}>
         <Routes>
           <Route path="signin" element={<SignIn />} />
           <Route
@@ -82,6 +79,16 @@ function App() {
               <Suspense fallback={<CircularProgress />}>
                 <ProtectedRoute>
                   <ManagePassengerPage />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="flights/:flightId/flightServices"
+            element={
+              <Suspense fallback={<CircularProgress />}>
+                <ProtectedRoute>
+                  <FlightServicePage />
                 </ProtectedRoute>
               </Suspense>
             }

@@ -7,7 +7,7 @@ export function getPassengers() {
 
 export function savePassenger(passenger) {
   return fetch(baseUrl + (passenger.id || ""), {
-    method: passenger.id ? "PUT" : "POST", // POST for create, PUT to update when id already exists.
+    method: passenger.id ? "PATCH" : "POST", // POST for create, PUT to update when id already exists.
     headers: { "content-type": "application/json" },
     body: JSON.stringify(passenger),
   })

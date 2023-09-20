@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadFlights } from "../redux/actions/flightAction.js";
 import {
   CssBaseline,
+  Container,
   Box,
   List,
   ListItem,
@@ -26,33 +27,35 @@ function FlightList() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Box mt={2} className="flight-list">
-        <List
-          aria-labelledby="flight-list"
-          color={grey[900]}
-          subheader={
-            <ListSubheader component="div" id="flight-list" color="inherit">
-              Flight
-            </ListSubheader>
-          }
-        >
-          {flightList.map((flight) => {
-            return (
-              <ListItem key={flight.id} disablePadding>
-                <ListItemButton
-                  component="a"
-                  href={`/flights/${flight.id}/dashboard`}
-                >
-                  <ListItemIcon>
-                    <FlightIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={flight.id} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
-      </Box>
+      <Container maxWidth="md" component="main">
+        <Box mt={2} className="flight-list">
+          <List
+            aria-labelledby="flight-list"
+            color={grey[900]}
+            subheader={
+              <ListSubheader component="div" id="flight-list" color="inherit">
+                Flight
+              </ListSubheader>
+            }
+          >
+            {flightList.map((flight) => {
+              return (
+                <ListItem key={flight.id} disablePadding>
+                  <ListItemButton
+                    component="a"
+                    href={`/flights/${flight.id}/dashboard`}
+                  >
+                    <ListItemIcon>
+                      <FlightIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={flight.id} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
+      </Container>
     </React.Fragment>
   );
 }

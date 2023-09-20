@@ -63,14 +63,14 @@ server.post("/checkInPassengers/", function (req, res, next) {
   }
 });
 
-server.post("/ancillaryServices/", function (req, res, next) {
-  const error = validateAncillaryService(req.body);
-  if (error) {
-    res.status(400).send(error);
-  } else {
-    next();
-  }
-});
+// server.post("/ancillaryServices/", function (req, res, next) {
+//   const error = validateAncillaryService(req.body);
+//   if (error) {
+//     res.status(400).send(error);
+//   } else {
+//     next();
+//   }
+// });
 
 server.use(
   jsonServer.rewriter({
@@ -100,8 +100,8 @@ function validateCheckInPassenger(checkInPassenger) {
   return "";
 }
 
-function validateAncillaryService(ancillaryService) {
-  if (!ancillaryService.flight) return "Flight is required.";
-  if (!ancillaryService.service) return "Service is required.";
-  return "";
-}
+// function validateAncillaryService(ancillaryService) {
+//   if (!ancillaryService.flight) return "Flight is required.";
+//   if (!ancillaryService.service) return "Service is required.";
+//   return "";
+// }

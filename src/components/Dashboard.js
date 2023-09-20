@@ -33,7 +33,7 @@ function DashboardPage() {
                     >
                       <PersonIcon />
                       <Typography gutterBottom variant="button">
-                        Manage Passenger
+                        Passengers
                       </Typography>
                     </Stack>
                   </CardContent>
@@ -43,7 +43,7 @@ function DashboardPage() {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <NavLink to="/ancillary">
+              <NavLink to={`/flights/${flightId}/flightServices`}>
                 <CardActionArea>
                   <CardContent>
                     <Stack
@@ -54,7 +54,7 @@ function DashboardPage() {
                     >
                       <PersonIcon />
                       <Typography gutterBottom variant="button">
-                        Manage anciallry service per flight
+                        Flight services
                       </Typography>
                     </Stack>
                   </CardContent>
