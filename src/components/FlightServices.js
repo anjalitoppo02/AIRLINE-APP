@@ -55,6 +55,16 @@ function FlightServicesPage() {
             <Tab label="Special Meals" />
               <Tab label="Shopping Items" />
           </Tabs>
+
+              <TabPanel value={activeTab} index={0}>
+<div>Ancillary Services</div>
+              </TabPanel>
+              <TabPanel value={activeTab} index={1}>
+<div>Special Meals</div>
+              </TabPanel>
+              <TabPanel value={activeTab} index={2}>
+<div>Shopping Items</div>
+              </TabPanel>
           </Grid>
           </Grid>
     </>
