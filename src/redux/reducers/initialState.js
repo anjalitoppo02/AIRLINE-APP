@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 export default {
   passengers: [],
-  ancillaryServices: [],
+  services: [],
   apiCallsInProgress: 0,
   username: [],
   flights: [],

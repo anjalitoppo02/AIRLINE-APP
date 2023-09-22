@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
-import { loadFlights } from "../../redux/actions/flightAction.js";
+import { loadFlights } from "../../redux/actions/flightAction";
 import { Typography, Paper, Stack } from "@mui/material";
 import FlightIcon from "@mui/icons-material/Flight";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";

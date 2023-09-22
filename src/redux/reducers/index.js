@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import apiCallsInProgress from "./apiStatusReducer";
 import passengers from "./passengerReducer";
-import ancillaryServices from "./ancillaryServiceReducer";
+import services from "./flightServiceReducer";
 import flights from "./flightListReducer";
 import authReducer from "./authReducer";
 import seats from "./seatDetailReducer";
@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   authReducer,
   apiCallsInProgress,
   passengers,
-  ancillaryServices,
+  services,
   flights,
   seats,
 });

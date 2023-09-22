@@ -161,68 +161,68 @@ const passengers = [
   },
 ];
 
-// const ancillaryServices = [
-//   {
-//     flight: 1,
-//     service: "Special Meal",
-//     id: 1,
-//     type: "1",
-//   },
-//   {
-//     flight: 1,
-//     service: "Shopping Item",
-//     id: 2,
-//     type: "2",
-//   },
-//   {
-//     flight: 1,
-//     service: "Extra luggage",
-//     id: 3,
-//     type: "2",
-//   },
-//   {
-//     flight: "2",
-//     type: "2",
-//     service: "New one",
-//     id: 4,
-//   },
-//   {
-//     flight: "2",
-//     type: "2",
-//     service: "Old one",
-//     id: 5,
-//   },
-//   {
-//     flight: "1",
-//     type: "1",
-//     service: "dgd",
-//     id: 6,
-//   },
-//   {
-//     flight: "1",
-//     type: "2",
-//     service: "mobile",
-//     id: 7,
-//   },
-//   {
-//     flight: "1",
-//     type: "3",
-//     service: "extra luggage",
-//     id: 8,
-//   },
-//   {
-//     flight: "1",
-//     type: "1",
-//     service: "sandwich",
-//     id: 9,
-//   },
-//   {
-//     flight: "2",
-//     type: "2",
-//     service: "xz",
-//     id: 10,
-//   },
-// ];
+const ancillaryServices = [
+  {
+    flight: 1,
+    service: "Special Meal",
+    id: 1,
+    type: "1",
+  },
+  {
+    flight: 1,
+    service: "Shopping Item",
+    id: 2,
+    type: "2",
+  },
+  {
+    flight: 1,
+    service: "Extra luggage",
+    id: 3,
+    type: "2",
+  },
+  {
+    flight: "2",
+    type: "2",
+    service: "New one",
+    id: 4,
+  },
+  {
+    flight: "2",
+    type: "2",
+    service: "Old one",
+    id: 5,
+  },
+  {
+    flight: "1",
+    type: "1",
+    service: "dgd",
+    id: 6,
+  },
+  {
+    flight: "1",
+    type: "2",
+    service: "mobile",
+    id: 7,
+  },
+  {
+    flight: "1",
+    type: "3",
+    service: "extra luggage",
+    id: 8,
+  },
+  {
+    flight: "1",
+    type: "1",
+    service: "sandwich",
+    id: 9,
+  },
+  {
+    flight: "2",
+    type: "2",
+    service: "xz",
+    id: 10,
+  },
+];
 
 const checkInPassengers = [
   {
@@ -633,7 +633,7 @@ const services = [
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
   passengers,
-  // ancillaryServices,
+  ancillaryServices,
   checkInPassengers,
   flights,
   seats,

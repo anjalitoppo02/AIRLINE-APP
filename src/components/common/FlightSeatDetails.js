@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-// import { loadSeatDetails } from "../../redux/actions/flightAction";
 import propTypes from "prop-types";
 import "../../css/singleflight.scss";
 import {

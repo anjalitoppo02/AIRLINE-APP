@@ -5,7 +5,7 @@ const mockData = require("./mockData.cjs");
 
 const {
   passengers,
-  // ancillaryServices,
+  ancillaryServices,
   checkInPassengers,
   flights,
   seats,
@@ -13,7 +13,7 @@ const {
 } = mockData;
 const data = JSON.stringify({
   passengers,
-  // ancillaryServices,
+  ancillaryServices,
   checkInPassengers,
   flights,
   seats,
