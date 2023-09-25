@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import {
   Box,
   Typography,
-  Divider,
   Grid,
   Tabs,
   Tab,
@@ -52,10 +51,9 @@ function CheckInFlightPage() {
 
   return (
     <>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant="h3" className="heading">
         Flight {flightId}
       </Typography>
-      <Divider sx={{ mb: 2 }} />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={8} md={7} lg={8}>
           <Tabs

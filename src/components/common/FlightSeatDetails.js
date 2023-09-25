@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import propTypes from "prop-types";
-import "../../css/singleflight.scss";
+import "../../assets/css/single_flight.scss";
 import {
   Grid,
   Stack,

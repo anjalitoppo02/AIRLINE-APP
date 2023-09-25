@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import propTypes from "prop-types";
-import { Box, Typography, Divider, Grid, Tabs, Tab } from "@mui/material";
+import { Box, Typography, Grid, Tabs, Tab } from "@mui/material";
 import ServicesCardPage from "./common/ServicesCard";
 import { loadFlightServices } from "../redux/actions/flightServiceAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ mt: "40px" }}>{children}</Box>}
     </div>
   );
 }
@@ -45,17 +45,19 @@ function FlightServicesPage() {
       console.log(flightServices);
       return (
         <>
-          <Typography variant="h5" sx={{ mb: 2 }}>
+          <Typography className="heading" variant="h3">
             Flight Services
           </Typography>
-          <Divider sx={{ mb: 2 }} />
+
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Tabs
                 value={activeTab}
                 onChange={handleTabType}
-                aria-label="Airline Check-In"
-                className="checkInMenuTabs"
+                aria-label="Flight Services Tab"
+                className="primary-menu-tab"
+                variant="scrollable"
+                scrollButtons="auto"
               >
                 <Tab label="Ancillary Services" />
                 <Tab label="Special Meals" />
@@ -75,7 +77,10 @@ function FlightServicesPage() {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
-                <div>Shopping Items</div>
+                <ServicesCardPage
+                  fService={flightServices[0].inflightShop}
+                  serviceType="shopping-item"
+                />
               </TabPanel>
             </Grid>
           </Grid>

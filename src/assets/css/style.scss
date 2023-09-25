@@ -1,0 +1,67 @@
+@use "base";
+@use "media-queries.scss" as *;
+
+table.MuiTable-root {
+  tr {
+    td,
+    th {
+      padding: base.$table-padding;
+    }
+  }
+}
+
+.MuiAppBar-root {
+  &.header {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(140, 152, 164, 0.25) 0px 3px 6px 0px;
+    color: base.$primary-color;
+    font-family: base.$font-stack;
+
+    h6 {
+      font-family: inherit;
+    }
+
+    .homeIcon {
+      color: base.$primary-color;
+      margin-right: 2px;
+    }
+
+    .logoutBtn {
+      background-color: base.$primary-color;
+      color: #fff;
+      border-radius: 8px;
+      text-transform: capitalize;
+      &:hover {
+        background-color: rgb(69, 79, 91);
+      }
+    }
+  }
+}
+
+h3.heading {
+  font-family: base.$heading-font;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0px 0px 34px;
+}
+
+.MuiTabs-root {
+  &.primary-menu-tab {
+    .MuiTab-root {
+      text-transform: capitalize;
+      padding: 0;
+      &:not(.Mui-selected) {
+        color: rgb(99, 115, 129);
+      }
+      &:not(:last-of-type) {
+        margin-right: 24px;
+        @include gt-xs {
+          margin-right: 40px;
+        }
+      }
+      &.Mui-selected {
+        color: base.$primary-color;
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import FlightIcon from "@mui/icons-material/Flight";
-import "../css/_flightList.scss";
+import "../assets/css/flightList.scss";
 import { grey } from "@mui/material/colors";
 
 function FlightList() {

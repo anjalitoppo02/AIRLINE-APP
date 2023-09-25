@@ -1,8 +1,8 @@
 import React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   Typography,
-  CssBaseline,
+  // CssBaseline,
   AppBar,
   Toolbar,
   IconButton,
@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/authAction.js";
 import { googleLogout } from "@react-oauth/google";
 
-const theme = createTheme();
+// const theme = createTheme();
 
 function Header() {
   const user = localStorage.getItem("role");
@@ -29,46 +29,44 @@ function Header() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ background: "#01579b" }}>
-          <Toolbar>
-            {user ? (
-              <NavLink to="/flights">
-                <IconButton
-                  size="large"
-                  aria-label="Home Icon"
-                  sx={{ color: "#fff" }}
-                >
-                  <HomeIcon />
-                </IconButton>
-              </NavLink>
-            ) : null}
-            <Typography
-              variant="subtitle1"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-              aria-label="Airline Check-In App"
-            >
-              Airline Check-In App
-            </Typography>
-
-            {user ? (
-              <Button
-                onClick={SignOut}
-                variant="outlined"
-                color="inherit"
-                aria-label="Logout Button"
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" className="header">
+        <Toolbar>
+          {user ? (
+            <NavLink to="/flights">
+              <IconButton
+                size="medium"
+                aria-label="Home Icon"
+                className="homeIcon"
               >
-                Logout
-              </Button>
-            ) : null}
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </ThemeProvider>
+                <HomeIcon />
+              </IconButton>
+            </NavLink>
+          ) : null}
+          <Typography
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+            aria-label="Airline Check-In App"
+          >
+            Airline Check-In App
+          </Typography>
+
+          {user ? (
+            <Button
+              onClick={SignOut}
+              variant="contained"
+              color="inherit"
+              aria-label="Logout Button"
+              className="logoutBtn"
+            >
+              Logout
+            </Button>
+          ) : null}
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
 

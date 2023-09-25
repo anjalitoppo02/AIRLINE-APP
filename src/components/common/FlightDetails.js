@@ -8,7 +8,7 @@ import FlightLandIcon from "@mui/icons-material/FlightLand";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import propTypes from "prop-types";
-import "../../css/_flight-details.scss";
+import "../../assets/css/flight_details.scss";
 
 function FlightDetailsPage({ flight }) {
   const flightDetails = useSelector((state) => state.flights);
