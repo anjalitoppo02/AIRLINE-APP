@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function AddNewServicesModal({ open, onClose, onSubmit }) {
+function AddNewServicesModal({ open, onClose, onSubmit, flightService }) {
   const [newFlightService, setNewFlightService] = React.useState("");
 
   const handleSubmit = () => {
@@ -27,20 +27,19 @@ function AddNewServicesModal({ open, onClose, onSubmit }) {
     <React.Fragment>
       <Dialog
         open={open}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
+        aria-labelledby={flightService !== null ? flightService.label : 'child-modal'}
         maxWidth="xs"
         fullWidth={true}
         TransitionComponent={Transition}
       >
-        <DialogTitle textAlign="center">Add Flight Service</DialogTitle>
+        <DialogTitle textAlign="center">Add {flightService !== null ? flightService.label : ''}</DialogTitle>
         <DialogContent>
           <form onSubmit={(e) => e.preventDefault()}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  label="Ancillary Service"
-                  name="ancillaryServices"
+                  label={flightService !== null ? flightService.label : ''}
+                  name={flightService !== null ? flightService.id : ''}
                   variant="standard"
                   fullWidth
                   onChange={(e) => setNewFlightService(e.target.value)}
@@ -68,4 +67,5 @@ AddNewServicesModal.propTypes = {
   open: propTypes.bool,
   onClose: propTypes.func,
   onSubmit: propTypes.func,
+  flightService: propTypes.object
 };
