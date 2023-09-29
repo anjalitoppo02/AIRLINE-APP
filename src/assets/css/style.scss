@@ -1,6 +1,13 @@
 @use "base";
 @use "media-queries.scss" as *;
 
+.css-13crjar-MuiContainer-root {
+  @include xs {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 table.MuiTable-root {
   tr {
     td,

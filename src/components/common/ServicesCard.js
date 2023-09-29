@@ -14,9 +14,43 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import propTypes from "prop-types";
 import "../../assets/css/service_card.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { saveFlightService } from "../../redux/actions/flightServiceAction";
 
 function ServicesCardPage({ fService, serviceType }) {
-  console.log(fService);
+  const flightServices = useSelector((state) => state.services);
+  const dispatch = useDispatch();
+
+  const handleDelete = async (val) => {
+    console.log(val);
+    let updatedService;
+    switch (serviceType) {
+      case "ancillary-service":
+        updatedService = {
+          ...flightServices[0],
+          ancillaryServices: fService.filter((item) => item !== val),
+        };
+        break;
+      case "special-meal":
+        updatedService = {
+          ...flightServices[0],
+          specialMeal: fService.filter((item) => item !== val),
+        };
+        break;
+      case "shopping-item":
+        updatedService = {
+          ...flightServices[0],
+          inflightShop: fService.filter((item) => item !== val),
+        };
+        break;
+      default:
+        updatedService = { ...flightServices };
+    }
+
+    console.log(updatedService);
+    await dispatch(saveFlightService(updatedService));
+  };
+
   return (
     <>
       <Grid container spacing={2}>
@@ -55,6 +89,9 @@ function ServicesCardPage({ fService, serviceType }) {
                       size="small"
                       variant="outlined"
                       className="deleteBtn"
+                      onClick={() => {
+                        handleDelete(item);
+                      }}
                     >
                       <DeleteIcon />
                     </IconButton>

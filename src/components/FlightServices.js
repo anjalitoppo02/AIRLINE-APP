@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import propTypes from "prop-types";
-import { Box, Typography, Grid, Tabs, Tab } from "@mui/material";
+import { Box, Typography, Grid, Tabs, Tab, Fab } from "@mui/material";
 import ServicesCardPage from "./common/ServicesCard";
-import { loadFlightServices } from "../redux/actions/flightServiceAction";
+import {
+  loadFlightServices,
+  saveFlightService,
+} from "../redux/actions/flightServiceAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import AddNewServicesModal from "./common/ServiceModal";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -27,6 +32,12 @@ TabPanel.propTypes = {
   value: propTypes.number.isRequired,
 };
 
+const fabStyle = {
+  position: "absolute",
+  bottom: 50,
+  right: 30,
+};
+
 function FlightServicesPage() {
   const flightServices = useSelector((state) => state.services);
   const { flightId } = useParams();
@@ -36,62 +47,88 @@ function FlightServicesPage() {
   const [activeTab, setActiveTab] = useState(0);
   const handleTabType = (event, newValue) => setActiveTab(newValue);
 
+  //Modal
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+
+  const handleAddNewService = (value) => {
+    console.log(value);
+    const updatedService = flightServices[0];
+    updatedService.ancillaryServices.push(value);
+
+    dispatch(saveFlightService(updatedService));
+  };
+
   useEffect(() => {
     dispatch(loadFlightServices({ flight: flightId }));
   }, [dispatch, flightId]);
 
   const showData = () => {
     if (flightServices.length !== 0) {
-      console.log(flightServices);
       return (
-        <>
-          <Typography className="heading" variant="h3">
-            Flight Services
-          </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Tabs
+              value={activeTab}
+              onChange={handleTabType}
+              aria-label="Flight Services Tab"
+              className="primary-menu-tab"
+              variant="scrollable"
+              scrollButtons="auto"
+            >
+              <Tab label="Ancillary Services" />
+              <Tab label="Special Meals" />
+              <Tab label="Shopping Items" />
+            </Tabs>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Tabs
-                value={activeTab}
-                onChange={handleTabType}
-                aria-label="Flight Services Tab"
-                className="primary-menu-tab"
-                variant="scrollable"
-                scrollButtons="auto"
-              >
-                <Tab label="Ancillary Services" />
-                <Tab label="Special Meals" />
-                <Tab label="Shopping Items" />
-              </Tabs>
-
-              <TabPanel value={activeTab} index={0}>
-                <ServicesCardPage
-                  fService={flightServices[0].ancillaryServices}
-                  serviceType="ancillary-service"
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <ServicesCardPage
-                  fService={flightServices[0].specialMeal}
-                  serviceType="special-meal"
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={2}>
-                <ServicesCardPage
-                  fService={flightServices[0].inflightShop}
-                  serviceType="shopping-item"
-                />
-              </TabPanel>
-            </Grid>
+            <TabPanel value={activeTab} index={0}>
+              <ServicesCardPage
+                fService={flightServices[0].ancillaryServices}
+                serviceType="ancillary-service"
+              />
+            </TabPanel>
+            <TabPanel value={activeTab} index={1}>
+              <ServicesCardPage
+                fService={flightServices[0].specialMeal}
+                serviceType="special-meal"
+              />
+            </TabPanel>
+            <TabPanel value={activeTab} index={2}>
+              <ServicesCardPage
+                fService={flightServices[0].inflightShop}
+                serviceType="shopping-item"
+              />
+            </TabPanel>
+            <Fab
+              color="primary"
+              size="medium"
+              aria-label="Add flight service button"
+              sx={fabStyle}
+              onClick={() => setCreateModalOpen(true)}
+            >
+              <AddIcon />
+            </Fab>
           </Grid>
-        </>
+        </Grid>
       );
     } else if (flightServices.error !== "") {
       return <p>{flightServices.error}</p>;
     }
   };
 
-  return <>{showData()}</>;
+  return (
+    <>
+      <Typography className="heading" variant="h3">
+        Flight Services
+      </Typography>
+      {showData()}
+
+      <AddNewServicesModal
+        open={createModalOpen}
+        onClose={() => setCreateModalOpen(false)}
+        onSubmit={handleAddNewService}
+      />
+    </>
+  );
 }
 
 export default FlightServicesPage;

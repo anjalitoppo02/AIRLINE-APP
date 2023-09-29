@@ -1,8 +1,6 @@
 import React from "react";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   Typography,
-  // CssBaseline,
   AppBar,
   Toolbar,
   IconButton,
@@ -14,8 +12,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/authAction.js";
 import { googleLogout } from "@react-oauth/google";
-
-// const theme = createTheme();
 
 function Header() {
   const user = localStorage.getItem("role");

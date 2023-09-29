@@ -3,17 +3,9 @@ const fs = require("fs");
 const path = require("path");
 const mockData = require("./mockData.cjs");
 
-const {
-  passengers,
-  ancillaryServices,
-  checkInPassengers,
-  flights,
-  seats,
-  services,
-} = mockData;
+const { passengers, checkInPassengers, flights, seats, services } = mockData;
 const data = JSON.stringify({
   passengers,
-  ancillaryServices,
   checkInPassengers,
   flights,
   seats,

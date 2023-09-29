@@ -36,7 +36,10 @@ function App() {
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <Header />
-        <Container maxWidth="lg" sx={{ padding: "50px 0px" }}>
+        <Container
+          maxWidth="lg"
+          sx={{ paddingTop: "50px", paddingBottom: "50px" }}
+        >
           <Routes>
             <Route path="signin" element={<SignIn />} />
             <Route
