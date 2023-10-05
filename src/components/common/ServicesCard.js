@@ -24,6 +24,23 @@ function ServicesCardPage({ fService, serviceType }) {
 
   //Modal
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [currentValue, setCurrentValue] = useState('');
+  const [service, setService] = useState(0);
+
+  const fServices = [
+    {
+      label: "Ancillary Services",
+      id: "ancillaryServices",
+    },
+    {
+      label: "Special Meals",
+      id: "specialMeal",
+    },
+    {
+      label: "Shopping Items",
+      id: "inflightShop",
+    },
+  ];
 
   const handleDelete = async (val) => {
     console.log(val);
@@ -92,6 +109,9 @@ function ServicesCardPage({ fService, serviceType }) {
                       size="small"
                       variant="outlined"
                       className="editBtn"
+                      onClick={() => {
+                        setCurrentValue(item);
+                      }}
                     >
                       <EditIcon />
                     </IconButton>
@@ -114,12 +134,13 @@ function ServicesCardPage({ fService, serviceType }) {
         })}
       </Grid>
 
-      {/* <AddNewServicesModal
+      <AddNewServicesModal
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
         onSubmit={handleEditService}
-        // flightService={fServices[activeTab]}
-      /> */}
+        flightService={fServices[activeTab]}
+        currentValue={currentValue}
+      />
     </>
   );
 }
