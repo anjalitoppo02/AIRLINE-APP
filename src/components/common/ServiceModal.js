@@ -15,8 +15,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function AddNewServicesModal({ open, onClose, onSubmit, flightService }) {
+function AddNewServicesModal({ open, onClose, onSubmit, flightService, currentValue }) {
   const [newFlightService, setNewFlightService] = React.useState("");
+  const [value, SetValue] = React.useState(currentValue);
 
   const handleSubmit = () => {
     onSubmit(newFlightService);
@@ -27,19 +28,20 @@ function AddNewServicesModal({ open, onClose, onSubmit, flightService }) {
     <React.Fragment>
       <Dialog
         open={open}
-        aria-labelledby={flightService !== null ? flightService.label : 'child-modal'}
+        aria-labelledby={flightService !== undefined ? flightService.label : 'child-modal'}
         maxWidth="xs"
         fullWidth={true}
         TransitionComponent={Transition}
       >
-        <DialogTitle textAlign="center">Add {flightService !== null ? flightService.label : ''}</DialogTitle>
+        <DialogTitle textAlign="center">Add {flightService !== undefined ? flightService.label : ''}</DialogTitle>
         <DialogContent>
           <form onSubmit={(e) => e.preventDefault()}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  label={flightService !== null ? flightService.label : ''}
-                  name={flightService !== null ? flightService.id : ''}
+                  label={flightService !== undefined ? flightService.label : ''}
+                  name={flightService !== undefined ? flightService.id : ''}
+                  value={value}
                   variant="standard"
                   fullWidth
                   onChange={(e) => setNewFlightService(e.target.value)}
@@ -67,5 +69,6 @@ AddNewServicesModal.propTypes = {
   open: propTypes.bool,
   onClose: propTypes.func,
   onSubmit: propTypes.func,
-  flightService: propTypes.object
+  flightService: propTypes.object,
+  currentValue: propTypes.string
 };
