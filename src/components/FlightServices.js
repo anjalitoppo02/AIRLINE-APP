@@ -52,37 +52,22 @@ function FlightServicesPage() {
 
   const fServices = [
     {
-      label: 'Ancillary Services',
-      id: 'ancillaryServices'
+      label: "Ancillary Services",
+      id: "ancillaryServices",
     },
     {
-      label: 'Special Meals',
-      id: 'specialMeal'
+      label: "Special Meals",
+      id: "specialMeal",
     },
     {
-      label: 'Shopping Items',
-      id: 'inflightShop'
-    }
+      label: "Shopping Items",
+      id: "inflightShop",
+    },
   ];
 
   const handleAddNewService = (value) => {
-    console.log(value);
     const updatedService = flightServices[0];
-    console.log(updatedService.fServices[activeTab].id));
-    switch(activeTab) {
-      case 0:
-        updatedService.ancillaryServices.push(value);
-        break;
-      case 1:
-        updatedService.specialMeal.push(value);
-        break;
-      case 2:
-        updatedService.inflightShop.push(value);
-        break;
-      default:
-        break;
-    }
-    
+    updatedService[fServices[activeTab].id].push(value);
 
     dispatch(saveFlightService(updatedService));
   };
@@ -151,17 +136,12 @@ function FlightServicesPage() {
       </Typography>
       {showData()}
 
-{fServices.map((item, index) => {
-   <AddNewServicesModal
+      <AddNewServicesModal
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
         onSubmit={handleAddNewService}
-  key={item.id}
-        flightService={activeTab === index ? item : null}
+        flightService={fServices[activeTab]}
       />
-}
-)}
-     
     </>
   );
 }

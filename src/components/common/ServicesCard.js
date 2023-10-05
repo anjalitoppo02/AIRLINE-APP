@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
@@ -16,10 +16,14 @@ import propTypes from "prop-types";
 import "../../assets/css/service_card.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { saveFlightService } from "../../redux/actions/flightServiceAction";
+import AddNewServicesModal from "./ServiceModal";
 
 function ServicesCardPage({ fService, serviceType }) {
   const flightServices = useSelector((state) => state.services);
   const dispatch = useDispatch();
+
+  //Modal
+  const [createModalOpen, setCreateModalOpen] = useState(false);
 
   const handleDelete = async (val) => {
     console.log(val);
@@ -49,6 +53,13 @@ function ServicesCardPage({ fService, serviceType }) {
 
     console.log(updatedService);
     await dispatch(saveFlightService(updatedService));
+  };
+
+  const handleEditService = (val) => {
+    const updatedService = flightServices[0];
+    // updatedService[fServices[activeTab].id].push(value);
+
+    dispatch(saveFlightService(updatedService));
   };
 
   return (
@@ -102,6 +113,13 @@ function ServicesCardPage({ fService, serviceType }) {
           );
         })}
       </Grid>
+
+      {/* <AddNewServicesModal
+        open={createModalOpen}
+        onClose={() => setCreateModalOpen(false)}
+        onSubmit={handleEditService}
+        // flightService={fServices[activeTab]}
+      /> */}
     </>
   );
 }
